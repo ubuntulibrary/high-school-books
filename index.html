@@ -3,14 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My PDF Library</title>
-
-    <!-- Tailwind CSS CDN -->
+    <title>High School Library</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
       body {
-        font-family: system-ui, sans-serif;
+        font-family: "Inter", system-ui, sans-serif;
       }
     </style>
   </head>
@@ -18,73 +16,67 @@
   <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
     <!-- Header -->
     <header class="bg-white shadow-md sticky top-0 z-10">
-      <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-600">📚 My PDF Library</h1>
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search PDFs..."
-          class="border rounded-xl px-3 py-2 text-sm w-48 sm:w-72 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl sm:text-3xl font-bold text-blue-600">
+          🎓 High School Library
+        </h1>
+        <p class="text-sm text-gray-500 hidden sm:block">
+          Learn • Explore • Grow
+        </p>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow max-w-5xl mx-auto p-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="pdfContainer">
-      <!-- PDF items will be generated here -->
+    <!-- Main -->
+    <main class="flex-grow max-w-6xl mx-auto px-6 py-10">
+      <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-gray-700">
+        📚 Subjects
+      </h2>
+
+      <div
+        id="subjectContainer"
+        class="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
+        <!-- Subject cards go here -->
+      </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t mt-6 py-4 text-center text-sm text-gray-500">
-      © <span id="year"></span> My PDF Library — Hosted on Vercel
+    <footer class="bg-white border-t mt-10 py-4 text-center text-sm text-gray-500">
+      © <span id="year"></span> High School Library. Built with ❤️ and Tailwind CSS.
     </footer>
 
     <script>
-      // 📄 List of your PDFs (you can edit this manually or generate dynamically)
-      const pdfFiles = [
-        { title: "Introduction to Linux", path: "Accounting/SSS 1/Chapter 1.pdf" },
-        { title: "Annual Report 2025", path: "documents/report.pdf" },
-        { title: "Guide to Open Source", path: "archive/guide.pdf" },
-        { title: "Old Research Notes", path: "archive/old1.pdf" },
+      const subjects = [
+        { name: "English", emoji: "📝" },
+        { name: "Mathematics", emoji: "➗" },
+        { name: "Biology", emoji: "🧬" },
+        { name: "Chemistry", emoji: "⚗️" },
+        { name: "Physics", emoji: "🔭" },
+        { name: "Geography", emoji: "🌍" },
+        { name: "Economics", emoji: "💰" },
+        { name: "Government", emoji: "🏛️" },
+        { name: "Civic Education", emoji: "🤝" },
+        { name: "Agricultural Science", emoji: "🌾" },
+        { name: "Literature in English", emoji: "📖" },
+        { name: "Commerce", emoji: "📈" },
+        { name: "Accounting", emoji: "📊" },
       ];
 
-      const container = document.getElementById("pdfContainer");
-      const searchInput = document.getElementById("searchInput");
+      const container = document.getElementById("subjectContainer");
       const yearSpan = document.getElementById("year");
 
-      // 🕓 Update year automatically
       yearSpan.textContent = new Date().getFullYear();
 
-      // 🔍 Render PDFs
-      function renderPDFs(filter = "") {
-        container.innerHTML = "";
-
-        pdfFiles
-          .filter((file) => file.title.toLowerCase().includes(filter.toLowerCase()))
-          .forEach((file) => {
-            const card = document.createElement("a");
-            card.href = file.path;
-            card.target = "_blank";
-            card.className =
-              "block bg-white shadow-sm rounded-2xl p-4 border hover:shadow-lg hover:border-blue-300 transition";
-            card.innerHTML = `
-              <div class="flex items-center gap-3">
-                <div class="text-blue-500 text-3xl">📄</div>
-                <div>
-                  <h2 class="font-semibold text-base">${file.title}</h2>
-                  <p class="text-xs text-gray-500 break-all">${file.path}</p>
-                </div>
-              </div>
-            `;
-            container.appendChild(card);
-          });
-      }
-
-      renderPDFs();
-
-      // 🧠 Live search
-      searchInput.addEventListener("input", (e) => {
-        renderPDFs(e.target.value);
+      subjects.forEach((subject) => {
+        const card = document.createElement("a");
+        card.href = `${subject.name}/index.html`; // You can create subpages later
+        card.className =
+          "bg-white border shadow-sm rounded-2xl p-5 flex flex-col items-center justify-center hover:shadow-md hover:border-blue-400 transition transform hover:-translate-y-1";
+        card.innerHTML = `
+          <div class="text-4xl mb-3">${subject.emoji}</div>
+          <h3 class="font-semibold text-gray-700 text-center">${subject.name}</h3>
+        `;
+        container.appendChild(card);
       });
     </script>
   </body>
