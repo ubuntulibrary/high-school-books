@@ -49,12 +49,14 @@
       const subjects = [
         { name: "English", emoji: "📝" },
         { name: "Mathematics", emoji: "➗" },
+        { name: "Further Mathematics", emoji: "📘" },
         { name: "Biology", emoji: "🧬" },
         { name: "Chemistry", emoji: "⚗️" },
         { name: "Physics", emoji: "🔭" },
         { name: "Geography", emoji: "🌍" },
         { name: "Economics", emoji: "💰" },
         { name: "Government", emoji: "🏛️" },
+        { name: "History", emoji: "📜" },
         { name: "Civic Education", emoji: "🤝" },
         { name: "Agricultural Science", emoji: "🌾" },
         { name: "Literature in English", emoji: "📖" },
@@ -69,7 +71,7 @@
 
       subjects.forEach((subject) => {
         const card = document.createElement("a");
-        card.href = `${subject.name}/index.html`; // You can create subpages later
+        //card.href = `${subject.name}/index.html`; // You can create subpages later
         card.className =
           "bg-white border shadow-sm rounded-2xl p-5 flex flex-col items-center justify-center hover:shadow-md hover:border-blue-400 transition transform hover:-translate-y-1";
         card.innerHTML = `
